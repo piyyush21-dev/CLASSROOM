@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Portal - Login/Sign-up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Basic body styling */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: url('https://lh3.googleusercontent.com/pw/AP1GczOXYcv94zcxXYgi8ozISWT4kM7B9fbCtb6tzAGg2SRVUWDYQ2NG9l0Ly6yRrmQeL4rK4qavuPQVENqOXbbW1g7KOHE2ZAGzd-ocjRzRC-K9GPiXcq20zYspRDtF4rX0t7sFTQHFeUH2HRTXSP3Imv3lBA=w1159-h869-s-no-gm?authuser=0') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        /* Container for the forms */
+        .container {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 1200px;
+            overflow: hidden;
+            height: 80%;
+        }
+
+        /* Styling for each form section */
+        .form-section {
+            padding: 40px;
+            width: 50%;
+            box-sizing: border-box;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        /* Form title styling */
+        .form-section h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Input and select styling */
+        input, select {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        /* Input focus styling */
+        input:focus, select:focus {
+            border-color: #ff6f61;
+            box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
+            outline: none;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #ff6f61, #de1e25);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Button hover effects */
+        button:hover {
+            background: linear-gradient(to right, #de1e25, #ff6f61);
+            transform: translateY(-2px);
+        }
+
+        /* Error message styling */
+        .error {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        /* Terms and conditions styling */
+        .terms {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Profile image preview styling */
+        .image-preview {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Confirmation message styling */
+        .confirmation-message {
+            display: none;
+            text-align: center;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* Forgot password button styling */
+        .forgot-password {
+            background: none;
+            color: #ff6f61;
+            padding: 5px;
+            font-size: 14px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin-top: 15px;
+            text-decoration: underline;
+        }
+
+        /* Image side styling */
+        .image-side {
+            width: 50%;
+            background: url('https://images.unsplash.com/photo-1593642632270-e5b35f4d3c3b') no-repeat center;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Dark overlay for image side */
+        .image-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+        }
+
+        /* Modal styles for forgot password */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Modal content styling */
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Modal title styling */
+        .modal h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-section">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <!-- Full Name Input -->
+            <input type="text" id="fullName" placeholder="Full Name" required>
+            <!-- Date of Birth Input -->
+            <input type="date" id="dob" required>
+            <!-- Place of Residence Input -->
+            <input type="text" id="residence" placeholder="Place of Residence" required>
+            <!-- Branch Selection -->
+            <select id="branch" required>
+                <option value="" disabled selected>Branch</option>
+                <option value="CSE">Computer Science and Engineering</option>
+                <option value="CE">Civil Engineering</option>
+                <option value="ME">Mechanical Engineering</option>
+                <option value="AI&DS">Artificial Intelligence & Data Science</option>
+                <option value="CSBS">Computer Science and Business Systems</option>
+                <option value="VLSI">Electronics (VLSI)</option>
+                <option value="Other">Other</option>
+            </select>
+            <!-- Division Selection -->
+            <select id="division" required>
+                <option value="" disabled selected>Division</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="Other">Other</option>
+            </select>
+            <!-- Degree Type Selection -->
+            <select id="degreeType" required>
+                <option value="" disabled selected>Degree Type</option>
+                <option value="BTech">B.Tech</option>
+                <option value="MTech">M.Tech</option>
+                <option value="Other">Other</option>
+            </select>
+            <!-- Semester Selection -->
+            <select id="semester" required>
+                <option value="" disabled selected>Semester</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <!-- Gender Selection -->
+            <select id="gender" required>
+                <option value="" disabled selected>Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <!-- Username Input -->
+            <input type="text" id="username" placeholder="Username" required>
+            <!-- Email Input -->
+            <input type="email" id="email" placeholder="Email" required>
+            <!-- Password Input -->
+            <input type="password" id="password" placeholder="Password" required>
+            <!-- Confirm Password Input -->
+            <input type="password" id="passwordConfirm" placeholder="Confirm Password" required>
+            <div class="error" id="signupError"></div>
+
+            <!-- Profile Image Input -->
+            <label for="profileImage" style="font-size: 14px; color: #333;">Add a Profile Image:</label>
+            <input type="file" id="profileImage" accept="image/*" onchange="previewImage()">
+            <img id="imagePreview" class="image-preview" src="#" alt="Profile Image Preview">
+            
+            <!-- Terms and Conditions Checkbox -->
+            <div class="terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the terms and conditions</label>
+            </div>
+
+            <!-- Sign Up Button -->
+            <button type="submit">Sign Up</button>
+            <div class="confirmation-message" id="confirmationMessage">Sign Up Successful!</div>
+        </form>
+    </div>
+
+    <div class="form-section">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <!-- Username Input -->
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <!-- Password Input -->
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <div class="error" id="loginError"></div>
+            <!-- Login Button -->
+            <button type="submit">Login</button>
+            <!-- Forgot Password Button -->
+            <button type="button" class="forgot-password" id="forgotPassword">Forgot Password?</button>
+            <div class="confirmation-message" id="loginConfirmationMessage">Login Successful!</div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal for Forgot Password -->
+<div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+        <h2>Reset Password</h2>
+        <!-- Reset Email Input -->
+        <input type="email" id="resetEmail" placeholder="Enter your email" required>
+        <!-- Reset Username Input -->
+        <input type="text" id="resetUsername" placeholder="Enter your username" required>
+        <!-- Send Reset Link Button -->
+        <button id="sendResetLink">Send Reset Link</button>
+        <div class="error" id="resetError"></div>
+        <div class="confirmation-message" id="resetConfirmationMessage" style="display: none;">Reset link sent!</div>
+        <!-- Close Modal Button -->
+        <button id="closeModal" style="margin-top: 10px; background: #ff6f61;">Close</button>
+    </div>
+</div>
+
+<script>
+    // Object to store registered users
+    const registeredUsers = {};
+
+    // Handle Sign Up
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Retrieve form values
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const passwordConfirm = document.getElementById('passwordConfirm').value;
+        const signupError = document.getElementById('signupError');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+        
+        // Validate Date of Birth
+        const dob = new Date(document.getElementById('dob').value);
+        const today = new Date();
+        if (dob >= today) {
+            signupError.textContent = "Date of Birth cannot be today.";
+            return;
+        }
+
+        // Password complexity check
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            signupError.textContent = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.";
+            return;
+        }
+
+        // Password confirmation check
+        if (password !== passwordConfirm) {
+            signupError.textContent = "Passwords do not match.";
+            return;
+        }
+
+        // Check terms agreement
+        if (!document.getElementById('terms').checked) {
+            signupError.textContent = "You must agree to the terms.";
+            return;
+        }
+
+        // Check if username already exists
+        if (registeredUsers[username]) {
+            signupError.textContent = "Username is already taken.";
+            return;
+        }
+
+        // Check for existing email
+        const emailExists = Object.values(registeredUsers).some(user => user.email === email);
+        if (emailExists) {
+            signupError.textContent = "Email is already registered.";
+            return;
+        }
+
+        // Store user information
+        registeredUsers[username] = { email };
+
+        console.log("Signing up user:", { username, email });
+        confirmationMessage.style.display = "block";
+
+        // Reset form
+        this.reset();
+        document.getElementById('imagePreview').style.display = "none";
+    });
+
+    // Handle Login
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Retrieve form values
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+        const loginError = document.getElementById('loginError');
+        const confirmationMessage = document.getElementById('loginConfirmationMessage');
+
+        // Example login validation
+        if (registeredUsers[username]) {
+            confirmationMessage.textContent = "Login Successful!";
+            confirmationMessage.style.display = "block";
+        } else {
+            loginError.textContent = "Invalid username or password.";
+        }
+
+        // Reset form
+        this.reset();
+    });
+
+    // Handle Forgot Password
+    document.getElementById('forgotPassword').addEventListener('click', function() {
+        // Display the forgot password modal
+        document.getElementById('forgotPasswordModal').style.display = "block";
+    });
+
+    // Close the modal
+    document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('forgotPasswordModal').style.display = "none";
+    });
+
+    // Send reset link
+    document.getElementById('sendResetLink').addEventListener('click', function() {
+        const resetEmail = document.getElementById('resetEmail').value;
+        const resetUsername = document.getElementById('resetUsername').value;
+        const resetError = document.getElementById('resetError');
+        const resetConfirmationMessage = document.getElementById('resetConfirmationMessage');
+
+        // Validate email and username
+        if (!registeredUsers[resetUsername] || registeredUsers[resetUsername].email !== resetEmail) {
+            resetError.textContent = "Username and email do not match.";
+            return;
+        }
+
+        console.log("Sending reset link to:", resetEmail);
+        resetConfirmationMessage.style.display = "block";
+
+        // Reset modal form
+        document.getElementById('resetEmail').value = "";
+        document.getElementById('resetUsername').value = "";
+    });
+
+    // Function to preview the uploaded image
+    function previewImage() {
+        const file = document.getElementById('profileImage').files[0];
+        const reader = new FileReader();
+        const imagePreview = document.getElementById('imagePreview');
+
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+</body>
+</html>
+
+

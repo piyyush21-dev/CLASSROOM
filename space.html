@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIDS Classroom Portal</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+            background: #000;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Animated star background */
+        @keyframes twinkling {
+            0% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+            100% { opacity: 0.8; }
+        }
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://lh3.googleusercontent.com/pw/AP1GczOXYcv94zcxXYgi8ozISWT4kM7B9fbCtb6tzAGg2SRVUWDYQ2NG9l0Ly6yRrmQeL4rK4qavuPQVENqOXbbW1g7KOHE2ZAGzd-ocjRzRC-K9GPiXcq20zYspRDtF4rX0t7sFTQHFeUH2HRTXSP3Imv3lBA=w1159-h869-s-no-gm?authuser=0') no-repeat top center;
+            opacity: 0.5;
+            /* animation: twinkling 2s infinite; */
+            z-index: -1;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            position: sticky;
+            top: 0;
+        }
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .navbar a:hover {
+            color: #ffa500;
+        }
+
+        /* Main heading */
+        .header {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 48px;
+            color: #ffa500;
+        }
+
+        /* Section cards */
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 50px 10%;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            width: 250px;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+            color: #fff;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            background: rgba(0, 0, 0, 0.9);
+        }
+        .card img {
+            width: 100px;
+            margin-top: 10px;
+        }
+        .card h2 {
+            font-size: 24px;
+            color: #ffa500;
+            margin: 20px 0 10px;
+        }
+        .card p {
+            font-size: 16px;
+        }
+
+        /* Facts Section */
+        .facts-section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px 20px;
+            margin: 50px 10%;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .facts-section h2 {
+            color: #ffa500;
+            margin-bottom: 20px;
+        }
+        .facts-section p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+        }
+        footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated star background -->
+    <div class="stars"></div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <!-- <a href="#assignments">Assignments</a>
+        <a href="#events">Events</a>
+        <a href="#clubs">Clubs</a>
+        <a href="#exam">Exams</a> -->
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Header -->
+    <header id="home">
+        <h1 class="header">Visvesvaraya Technological University</h1>
+    </header>
+
+    <!-- Main content: Cards with links -->
+    <div class="container">
+        <!-- Assignments Card -->
+        <div class="card" id="assignments">
+            <img src="https://source.unsplash.com/100x100/?assignment" alt="Assignments">
+            <h2>Assignments</h2>
+            <p>View and submit assignments, check deadlines, and receive grades.</p>
+            <a href="#assignments-section" style="color:#ffa500;">View Assignments</a>
+        </div>
+
+        <!-- Events Card -->
+        <div class="card" id="events">
+            <img src="https://source.unsplash.com/100x100/?event" alt="Events">
+            <h2>Events</h2>
+            <p>Keep up-to-date with upcoming class events, including seminars and activities.</p>
+            <a href="#events-section" style="color:#ffa500;">View Events</a>
+        </div>
+
+        <!-- Clubs Card -->
+        <div class="card" id="clubs">
+            <img src="https://source.unsplash.com/100x100/?club" alt="Clubs">
+            <h2>Clubs</h2>
+            <p>Join clubs and participate in activities to enhance your learning experience.</p>
+            <a href="#clubs-section" style="color:#ffa500;">View Clubs</a>
+        </div>
+
+        <!-- Exam Information Card -->
+        <div class="card" id="exam">
+            <img src="https://source.unsplash.com/100x100/?exam" alt="Exams">
+            <h2>Exam Details</h2>
+            <p>Access exam schedules, study materials, and grading information.</p>
+            <a href="#exam-section" style="color:#ffa500;">View Exams</a>
+        </div>
+
+        <!-- Attendance Card -->
+        <div class="card" id="attendance">
+            <img scr="https://source.unsplash.com/100x100/?attendance" alt="Attendance">
+            <h2>Attendance Details</h2>
+            <p>Access attendance details, timetables, and mark your attendance.</p>
+            <a herf="#attendance-section" style="color: #ffa500;">View Attendance</a>
+        </div>
+    </div>
+
+    <!-- Section Details -->
+    <section class="facts-section" id="assignments-section">
+        <h2>Assignments</h2>
+        <p>Submit your assignments online, view due dates, and track your grades through this portal.</p>
+    </section>
+
+    <section class="facts-section" id="events-section">
+        <h2>Events</h2>
+        <p>Stay informed about all class events, including dates, times, and locations. Never miss an event again!</p>
+    </section>
+
+    <section class="facts-section" id="clubs-section">
+        <h2>Clubs</h2>
+        <p>Join various clubs, from tech clubs to cultural groups, to expand your knowledge and skills.</p>
+    </section>
+
+    <section class="facts-section" id="exam-section">
+        <h2>Exam Details</h2>
+        <p>View schedules for upcoming exams, get notified about changes, and access study resources.</p>
+    </section>
+
+    <section class="facts-section" id="attendance-section">
+        <h2>Attendance Details</h2>
+        <p>View, mark, edit attendance.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2024 AIDS Classroom Portal | Empowering Education</p>
+    </footer>
+
+</body>
+</html>

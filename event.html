@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event - Annual Tech Conference 2023</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            color: #333;
+            background-color: #f0f4f8;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Section */
+        .header {
+            background: url('https://media1.giphy.com/media/3osxYCitDjuhyaRinK/200.webp?cid=ecf05e47eypzjfog0zx42toeg1cggnxmz1zm6hwgmedhorj7&ep=v1_gifs_search&rid=200.webp&ct=g') no-repeat center center/cover;
+            color: #ffd700;
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-family: 'Georgia', serif;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #e3f2fd;
+        }
+
+        .btn-register {
+            padding: 12px 25px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-register:hover {
+            background-color: #004080;
+            transform: scale(1.05);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 50px 20px;
+            text-align: center;
+            color: #003366;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-out;
+        }
+
+        section p {
+            font-size: 1.1em;
+        }
+
+        /* About Section */
+        .about {
+            background: url('https://media0.giphy.com/media/10xwDbZ6POOmyY/200.webp?cid=ecf05e47hnzcphzo5g7exm2iu3k1xuygff2rzq7rpaee1sp1&ep=v1_gifs_search&rid=200.webp&ct=g') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            background: url('https://media1.giphy.com/media/l0HlBaC5Kp9cXZDTa/giphy.webp?cid=790b7611rdnb3r89yi14wdhtxoh1cshabhdtugl6gk471gfq&ep=v1_gifs_search&rid=giphy.webp&ct=g') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        /* Speakers Section */
+        .speakers {
+            background: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmRuYjNyODl5aTE0d2RodHhvaDFjc2hhYmhkdHVnbDZnazQ3MWdmcSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oriNZuNzeTbtJvKs8/giphy.webp') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: url('https://media3.giphy.com/media/4ad4jcX9odVZmo1Fcj/200.webp?cid=ecf05e47hnzcphzo5g7exm2iu3k1xuygff2rzq7rpaee1sp1&ep=v1_gifs_search&rid=200.webp&ct=g') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        /* Registration Section */
+        .registration {
+            background: url('https://media4.giphy.com/media/3ohs869MjAeATgUt0I/giphy.webp?cid=ecf05e474dn8vb7rpj0fcqumrndorkkb0cs8f8l0ysvzvr4v&ep=v1_gifs_search&rid=giphy.webp&ct=g') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: url('https://media2.giphy.com/media/l4FGHbTZxCp7yYb4Y/giphy.webp?cid=ecf05e474dn8vb7rpj0fcqumrndorkkb0cs8f8l0ysvzvr4v&ep=v1_gifs_search&rid=giphy.webp&ct=g') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        /* Section styling for overlay */
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text readability */
+            z-index: 1;
+        }
+
+        /* Content inside sections */
+        section > * {
+            position: relative;
+            z-index: 2; /* Ensure text is above overlay */
+        }
+
+        /* Schedule Section */
+        .schedule-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .schedule-item {
+            background-color: rgba(255, 255, 255, 0.8); /* Light background for schedule items */
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 5px solid #ffc107;
+            color: #333;
+        }
+
+        /* Speakers Section */
+        .speakers-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .speaker {
+            text-align: center;
+            width: 150px;
+            color: #003366;
+        }
+
+        .speaker img {
+            width: 100%;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .speaker img:hover {
+            transform: scale(1.1);
+        }
+
+        /* FAQ Section */
+        .faq-item h3 {
+            font-size: 1.3em;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .faq-item h3:hover {
+            color: #0066cc;
+        }
+
+        .faq-item p {
+            margin-top: 5px;
+            color: #666;
+        }
+
+        /* Registration Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input, .btn-submit {
+            padding: 12px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: box-shadow 0.3s;
+        }
+
+        form input:focus {
+            outline: none;
+            box-shadow: 0px 0px 5px #0066cc;
+        }
+
+        .btn-submit {
+            background-color: #0066cc;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-submit:hover {
+            background-color: #004080;
+        }
+
+        /* Contact Section */
+        .contact a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1>EVENT PLANNER</h1>
+        <p>Explore Your Own Creativity</p>
+    </header>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About the Event</h2>
+        <p>This year's Annual Tech Conference brings together industry leaders, educators, and students to explore the latest trends in technology, from AI and machine learning to cybersecurity and digital transformation.</p>
+        <p>Don't miss your chance to learn from experts, attend hands-on workshops, and connect with peers passionate about technology.</p>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule" id="schedule">
+        <h2>Event Schedule</h2>
+        <div class="schedule-container">
+            <div class="schedule-item">
+                <h3>10:00 AM - Opening Keynote</h3>
+                <p>Speaker: Dr. Jane Doe, Head of AI Research</p>
+            </div>
+            <div class="schedule-item">
+                <h3>11:30 AM - Workshop: Building a Web App</h3>
+                <p>Instructor: Mr. John Smith, Software Engineer</p>
+            </div>
+            <div class="schedule-item">
+                <h3>2:00 PM - Panel Discussion: Future of Cybersecurity</h3>
+                <p>Panelists: Experts from leading tech firms</p>
+            </div>
+            <div class="schedule-item">
+                <h3>4:00 PM - Networking & Refreshments</h3>
+                <p>Meet peers and professionals in the tech industry.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section class="speakers" id="speakers">
+        <h2>Featured Speakers</h2>
+        <div class="speakers-container">
+            <div class="speaker">
+                <img src="speaker1.jpg" alt="Dr. Jane Doe">
+                <h3>Dr. Jane Doe</h3>
+                <p>Head of AI Research, TechCorp</p>
+            </div>
+            <div class="speaker">
+                <img src="speaker2.jpg" alt="Mr. John Smith">
+                <h3>Mr. John Smith</h3>
+                <p>Software Engineer, WebWorks</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>Is the event free to attend?</h3>
+            <p>Yes, the event is free for students. However, prior registration is required.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Will there be food and refreshments?</h3>
+            <p>Yes, we will provide complimentary snacks and drinks during networking sessions.</p>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="registration" id="registration">
+        <h2>Register Now</h2>
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="text" placeholder="Institution" required>
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <p>For more information, please contact us at <a href="mailto:info@collegeevent.com">info@collegeevent.com</a>.</p>
+    </section>
+
+</body>
+</html>
+
+

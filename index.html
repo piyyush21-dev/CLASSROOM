@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        header:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            color: black;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffd54f;
+            transform: translateY(-2px);
+        }
+
+        /* Dynamic Background Section */
+        .background {
+            background: url('https://lh3.googleusercontent.com/pw/AP1GczOXYcv94zcxXYgi8ozISWT4kM7B9fbCtb6tzAGg2SRVUWDYQ2NG9l0Ly6yRrmQeL4rK4qavuPQVENqOXbbW1g7KOHE2ZAGzd-ocjRzRC-K9GPiXcq20zYspRDtF4rX0t7sFTQHFeUH2HRTXSP3Imv3lBA=w1159-h869-s-no-gm?authuser=0') no-repeat center center/cover; 
+            color: #fff; 
+            padding: 80px 20px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 60vh; 
+            gap: 15px; 
+            position: relative; 
+        }
+        .welcome-message h1 { 
+            font-size: 2.5em; 
+            font-weight: bold; 
+            color: cyan; 
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in;
+        }
+        #quote-of-the-day { 
+            font-style: italic; 
+            font-size: 1.3em; 
+            color: lightblue; 
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        #current-date { 
+            font-size: 2em; 
+            font-weight: bold; 
+            margin-top: 10px; 
+            animation: fadeIn 1s ease-in 0.5s;
+        }
+
+        /* Quick Links Section */
+        .quick-links {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+        .quick-link {
+            padding: 30px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .quick-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Highlight Overlays */
+        .quick-link::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            z-index: 1; /* Ensure overlay is above the background */
+        }
+        .orange-highlight:hover::after {
+            background-color: rgba(255, 165, 0, 0.5); /* Semi-transparent orange */
+        }
+        .blue-highlight:hover::after {
+            background-color: rgba(0, 123, 255, 0.5); /* Semi-transparent blue */
+        }
+        .yellow-highlight:hover::after {
+            background-color: rgba(222, 184, 135, 0.5); /* Semi-transparent beige */
+        }
+        .pink-highlight:hover::after {
+            background-color: rgba(255, 192, 203, 0.5); /* Semi-transparent pink */
+        }
+        .teal-highlight:hover::after {
+            background-color: rgba(0, 128, 128, 0.5); /* Semi-transparent teal */
+        }
+        .red-highlight:hover::after {
+            background-color: rgba(255, 0, 0, 0.5); /* Semi-transparent red */
+        }
+
+        .quick-link h2, .quick-link p {
+            position: relative; /* Needed to layer text above the overlay */
+            z-index: 2; /* Ensure text is above the overlays */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #283593; 
+            color: #fff; 
+            text-align: center; 
+            padding: 20px; 
+            font-size: 0.9em; 
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2); 
+            transition: background-color 0.3s;
+        }
+        footer:hover {
+            background-color: rgba(40, 53, 147, 0.9);
+        }
+        footer p, footer a {
+            margin: 5px 0; 
+            color: #fff; 
+            text-decoration: none; 
+            transition: color 0.3s ease; 
+        }
+        footer a:hover { 
+            color: #ffd54f; 
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Button Styles */
+        .button {
+            background-color: #ffd54f;
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #ffc107;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="https://i0.wp.com/sjbit.edu.in/wp-content/uploads/2021/07/VTU-Logo-250x250-1.png?ssl=1" alt="VTU Logo"> Visvesvaraya Technological University 
+            </a>
+        </div>
+        <nav>
+            <a href="homepage.html">Home</a>
+            <a href="#">Assignments</a>
+            <a href="event.html">Events</a>
+            <a href="#">Clubs</a>
+            <a href="#">Timetable</a>
+            <a href="login.html" id="login">Login/Sign-Up</a>
+        </nav>
+    </header>
+
+    <!-- Dynamic Background Section -->
+    <section class="background" id="background-section">
+        <div class="welcome-message">
+            <h1>Visvesvaraya Technological University</h1>
+            <h2>ವಿಶ್ವೇಶ್ವರಯ್ಯ ತಾಂತ್ರಿಕ ವಿಶ್ವವಿದ್ಯಾಲಯ</h2>
+            <p id="quote-of-the-day">"ಮೊದಲು ಮಾನವನಾಗು" – ಸರ್ ಎಂ. ವಿಶ್ವೇಶ್ವರಯ್ಯ</p>
+        </div>
+        <div class="calendar">
+            <p id="current-date"></p>
+        </div>
+        <button class="button">Explore More</button>
+    </section>
+
+    <!-- Main Content Area -->
+    <main>
+        <section class="quick-links">
+            <div class="quick-link orange-highlight" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbR6wPHVUXkxEsxoQjvfGdPNexg_eleg7wEw&s') no-repeat center center/cover;">
+                <h2><a href="#">Assignments</a></h2>
+                <p>View and submit assignments.</p>
+            </div>
+            <div class="quick-link blue-highlight" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgrIRhLAtatO1uBu28Gf98B84CqDnZC5SUrA&s') no-repeat center center/cover;">
+                <h2><a href="#">Upcoming Events</a></h2>
+                <p>Check class events and deadlines.</p>
+            </div>
+            <div class="quick-link yellow-highlight" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIpFLhsrWCaY_4SrOYgPAdwRKUOKOSQ9-7zg&s') no-repeat center center/cover;">
+                <h2><a href="#">Club Activities</a></h2>
+                <p>Join and participate in clubs.</p>
+            </div>
+        </section>
+        <section class="quick-links">
+            <div class="quick-link pink-highlight" style="background: url('https://wpschoolpress.com/wp-content/uploads/2024/02/School-Timetable-Software-1.png') no-repeat center center/cover;">
+                <h2><a href="#">Time-table</a></h2>
+                <p>View your class time-table.</p>
+            </div>
+            <div class="quick-link teal-highlight" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0aKRdwXitIGaoGbaFU7y6UyACYpcGnKfdew&s') no-repeat center center/cover;">
+                <h2><a href="#">Faculty</a></h2>
+                <p>Know your teachers.</p>
+            </div>
+            <div class="quick-link red-highlight" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3e9V4_9dNvn9LkMGu4sotIor6t-K8Ayn6A&s') no-repeat center center/cover;">
+                <h2><a href="#">Sports</a></h2>
+                <p>Join and participate in physical activities and sports.</p>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <p>Contact: piyushannigeri[at]yahoo.com</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <p><a href="https://copyright.gov.in/documents/handbook.html">© 2024 Visvesvaraya Technological University, Belagavi. All Rights Reserved.</a></p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
